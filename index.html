@@ -334,12 +334,20 @@
     </div>
 
     <div class="two-col" style="margin-bottom:48px">
-      <video class="video-ph" controls poster="videos/screenshot-video-kochcomedie.jpg" preload="none">
-        <source src="videos/koch-comedie.mp4" type="video/mp4">
-      </video>
-      <video class="video-ph" controls poster="videos/screenshot-video-kochcomedie-ndr.jpg" preload="none">
-        <source src="videos/koch-comedie-ndr.mp4" type="video/mp4">
-      </video>
+      <div class="video-lazy" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;">
+          <img class="video-thumb" src="videos/screenshot-video-kochcomedie.jpg" alt="" style="width:100%;display:block;cursor:pointer;aspect-ratio:16/9;object-fit:cover">
+          <button class="video-play-btn" aria-label="Video abspielen" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;padding:0;z-index:2"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="72" height="72"><circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.52)"/><polygon points="30,22 62,40 30,58" fill="white"/></svg></button>
+          <video preload="none" style="width:100%;display:none">
+            <source src="videos/koch-comedie.mp4" type="video/mp4">
+          </video>
+        </div>
+      <div class="video-lazy" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;">
+          <img class="video-thumb" src="videos/screenshot-video-kochcomedie-ndr.jpg" alt="" style="width:100%;display:block;cursor:pointer;aspect-ratio:16/9;object-fit:cover">
+          <button class="video-play-btn" aria-label="Video abspielen" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;padding:0;z-index:2"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="72" height="72"><circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.52)"/><polygon points="30,22 62,40 30,58" fill="white"/></svg></button>
+          <video preload="none" style="width:100%;display:none">
+            <source src="videos/koch-comedie-ndr.mp4" type="video/mp4">
+          </video>
+        </div>
     </div>
 
     <div class="gallery-masonry">
@@ -529,5 +537,17 @@
 </footer>
 
 <script src="nav.js"></script>
+<script>
+document.querySelectorAll('.video-lazy').forEach(function(w){
+  w.querySelector('.video-play-btn').addEventListener('click',function(){
+    var video=w.querySelector('video');
+    w.querySelector('.video-thumb').style.display='none';
+    this.style.display='none';
+    video.style.display='block';
+    video.setAttribute('controls','');
+    video.play();
+  });
+});
+</script>
 </body>
 </html>

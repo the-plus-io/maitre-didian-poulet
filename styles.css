@@ -998,3 +998,9 @@ video.video-ph {
   color: var(--bordeaux);
   background: var(--paper);
 }
+
+/* ============ VIDEO LAZY LOAD ============ */
+.video-lazy { cursor:default }
+.video-play-btn svg circle { transition: opacity .15s }
+.video-play-btn:hover svg circle { opacity: .7 }
+.video-play-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 50% }
