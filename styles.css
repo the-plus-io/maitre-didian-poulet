@@ -1084,3 +1084,25 @@ video.video-ph {
 .video-play-btn svg circle { transition: opacity .15s }
 .video-play-btn:hover svg circle { opacity: .7 }
 .video-play-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 50% }
+.video-yt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(201,169,97,.18), transparent 60%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px);
+}
+.video-yt-note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 12px 20px;
+  font-size: .8rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--champagne-dark);
+  z-index: 2;
+}
+.video-yt-note a { color: var(--gold); }

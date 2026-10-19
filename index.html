@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body data-screen-label="Startseite">
 
@@ -130,19 +130,13 @@
     </div>
 
     <div class="two-col" style="margin-bottom:48px">
-      <div class="video-lazy" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;">
-          <img class="video-thumb" src="videos/screenshot-video-kochcomedie.jpg" alt="" style="width:100%;display:block;cursor:pointer;aspect-ratio:16/9;object-fit:cover">
+      <div class="video-lazy video-yt" data-yt="DKOguxIf1A4" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;aspect-ratio:16/9">
           <button class="video-play-btn" aria-label="Video abspielen" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;padding:0;z-index:2"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="72" height="72"><circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.52)"/><polygon points="30,22 62,40 30,58" fill="white"/></svg></button>
-          <video preload="none" style="width:100%;display:none">
-            <source src="videos/koch-comedie.mp4" type="video/mp4">
-          </video>
+          <p class="video-yt-note">Beim Abspielen wird eine Verbindung zu YouTube hergestellt. <a href="datenschutz.html#youtube">Datenschutz</a></p>
         </div>
-      <div class="video-lazy" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;">
-          <img class="video-thumb" src="videos/screenshot-video-kochcomedie-ndr.jpg" alt="" style="width:100%;display:block;cursor:pointer;aspect-ratio:16/9;object-fit:cover">
+      <div class="video-lazy video-yt" data-yt="nDNGU4xr8Pw" style="width:100%;border-radius:20px;overflow:hidden;position:relative;background:#111;aspect-ratio:16/9">
           <button class="video-play-btn" aria-label="Video abspielen" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;padding:0;z-index:2"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="72" height="72"><circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.52)"/><polygon points="30,22 62,40 30,58" fill="white"/></svg></button>
-          <video preload="none" style="width:100%;display:none">
-            <source src="videos/koch-comedie-ndr.mp4" type="video/mp4">
-          </video>
+          <p class="video-yt-note">Beim Abspielen wird eine Verbindung zu YouTube hergestellt. <a href="datenschutz.html#youtube">Datenschutz</a></p>
         </div>
     </div>
 
@@ -469,14 +463,16 @@
 
 <script src="nav.js"></script>
 <script>
-document.querySelectorAll('.video-lazy').forEach(function(w){
+document.querySelectorAll('.video-yt').forEach(function(w){
   w.querySelector('.video-play-btn').addEventListener('click',function(){
-    var video=w.querySelector('video');
-    w.querySelector('.video-thumb').style.display='none';
-    this.style.display='none';
-    video.style.display='block';
-    video.setAttribute('controls','');
-    video.play();
+    var iframe=document.createElement('iframe');
+    iframe.src='https://www.youtube-nocookie.com/embed/'+w.dataset.yt+'?autoplay=1&rel=0';
+    iframe.title='YouTube-Video';
+    iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.allowFullscreen=true;
+    iframe.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';
+    w.innerHTML='';
+    w.appendChild(iframe);
   });
 });
 </script>
